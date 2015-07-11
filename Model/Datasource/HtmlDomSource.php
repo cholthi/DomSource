@@ -4,7 +4,12 @@ App::import('Vendor','simple_html_dom',array('file'=>'sunra/php-simple-html-dom-
 /**
  * Html Dom Datasource
  *
- * Datasource for array based models
+ * Datasource for html Dom based models
+ * 
+ *  @copyright     copyright 2015, Cholthi Tiopic
+ *  @author        cholthi
+ *  @licence        MIT
+ *  package        Model.Datasource
  */
 class ArraySource extends DataSource {
 /**
