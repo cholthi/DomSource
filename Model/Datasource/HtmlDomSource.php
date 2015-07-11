@@ -8,10 +8,10 @@ App::import('Vendor','simple_html_dom',array('file'=>'sunra/php-simple-html-dom-
  * 
  *  @copyright     copyright 2015, Cholthi Tiopic
  *  @author        cholthi
- *  @licence        MIT
- *  package        Model.Datasource
+ *  @license        MIT
+ *  @package        Model.Datasource
  */
-class ArraySource extends DataSource {
+class HtmlDomSource extends DataSource {
 /**
  * Description string for this Data Source.
  *
@@ -89,7 +89,7 @@ private function loadDom($model) {
  */
 	public function read(Model $model, $queryData = array(), $recursive = null) {
 		$this->Dom = $this->loadDom;
-        $data = array();
+                $data = array();
 		$fields = $queryData['fields'];
 		unset($queryData['fields']);
 
@@ -103,7 +103,7 @@ private function loadDom($model) {
 
  public function extractData($model, $fields = array() , $conditions) {
 
- 	              $result = array();
+ 	           $result = array();
                   foreach ($fields as  $field) {
                   	$selector = $conditions[$field] ;
                   	if(strpos($selector, ' ') !== false) {
