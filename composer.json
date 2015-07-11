@@ -1,0 +1,14 @@
+{
+    "name": "cholthi/html_dom_source",
+    "description": "a cakephp datasource for scraping data from html source page",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Cholthi Tiopic",
+            "email": "cholthipaul@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    "sunra/php-simple-html-dom-parser": "v1.5.0"
+    }}
