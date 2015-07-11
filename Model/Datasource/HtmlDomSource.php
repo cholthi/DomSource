@@ -128,6 +128,7 @@ private function loadDom($model) {
                         }
                   }
                   }
+                  $this->Dom = '';
                   return $result
 
 
