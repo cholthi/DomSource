@@ -27,7 +27,7 @@ protected $source;
 /**
 * simple dom instance
 */
-protected $Dom
+protected $Dom;
 
 /**
  * Returns a Model description (metadata) or null if none found.
@@ -98,7 +98,7 @@ private function loadDom($model) {
 
  public function extractData($model, $fields = array() , $conditions) {
 
- 	              $result = array()
+ 	              $result = array();
                   foreach ($fields as  $field) {
                   	$selector = $conditions[$field] ;
                   	if(strpos($selector, ' ') !== false) {
