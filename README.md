@@ -30,4 +30,14 @@ or in the model
       $data =  $this->{$this->modelClass}->find('all', compact(fields, conditions);
        debug($data);
        }
+       
+# advanced
+model find results from this datasource come as one record with some key being array of dom objects. This is an embarrasing limitation inherent to plugin developer :). To have better control on return results, set the "array_filter_callback" to a method in your model and do your post find filter on field per field basis.
+
+    //model
+    public function fieldFilter($fieldArray) {
+          return array_map(function($node) {
+              return $node->plaintext;
+              }, $fieldArray );
+              }
 
