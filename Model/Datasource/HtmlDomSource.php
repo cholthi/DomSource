@@ -6,7 +6,7 @@ App::import('Vendor','simple_html_dom',array('file'=>'sunra/php-simple-html-dom-
  *
  * Datasource for array based models
  */
-class ArraySource extends DataSource {
+class HtmlDomSource extends DataSource {
 /**
  * Description string for this Data Source.
  *
@@ -27,7 +27,7 @@ protected $source;
 /**
 * simple dom instance
 */
-protected $Dom
+protected $Dom;
 
 /**
  * Returns a Model description (metadata) or null if none found.
@@ -83,31 +83,50 @@ private function loadDom($model) {
  * @return mixed
  */
 	public function read(Model $model, $queryData = array(), $recursive = null) {
-		$this->Dom = $this->loadDom;
+		$this->Dom = $this->loadDom($model);
         $data = array();
 		$fields = $queryData['fields'];
 		unset($queryData['fields']);
 
 		if(count($fields) && $fields !== 'COUNT') {
                 extract($queryData);
-             $data = $this->extractData($fields , $conditions);
+             $data = $this->extractData($model ,$fields , $conditions);
 		}
 		 return $data;
 	}
 
-
+/**
+* extracts data from source
+* @param $model 
+* @param $fields
+* @return array
+*/
  public function extractData($model, $fields = array() , $conditions) {
 
  	              $result = array()
                   foreach ($fields as  $field) {
-                  	$selector = $conditions[$field] ;
-                  	if(strpos($selector, ' ') !== false) {
-                  		list($selector,$index) = explode(' ', $selector,2);
-                  		$elem = $this->Dom->find($selector, $index);
-                  		$result[$model->alias][$field] = $elem->plaintext;
-                  	}
+
+                  	$_selector = $conditions[$field] ;
+                  	if(strpos($_selector, ' ') !== false) {
+
+                  		$selector = explode(' ', $_selector);
+                       $index = $selector[count($selector)-1];
+
+                  		if(ctype_digit(trim($index)) {
+
+                        $selector = unset($selector[count($selector)-1]);
+                        $elem = $this->Dom->find(implode(' ',$selector), (int)$index);
+                        $result[$model->alias][$field] = $elem->innertext;
+                  	   }
+
+                       else {
+                             //default
+                             $result[$model->alias][$field] = $this->Dom->find($_selector);
+                           }
+                    }
                   	else {
-                  	$result[$model->alias][$field] = $this->Dom->find($selector);
+                        //default
+                  	    $result[$model->alias][$field] = $this->Dom->find($_selector);
                   	 }
                   
                   if(is_array($result[$model->alias][$field]) && $this->config['array_filter_callback']) {
@@ -123,13 +142,11 @@ private function loadDom($model) {
                         if(is_array($result[$model->alias][$field]) {
                         	foreach ($result[$model->alias][$field] as  $node) {
 
-                        		$result[$model->alias][$field][] = $node->plaintext;
+                        		$result[$model->alias][$field][] = $node->innertext;
                         	}
                         }
                   }
                   }
-                  return $result
-
-
-
+                  $this->dom = '';
+                  return $result;
 }
