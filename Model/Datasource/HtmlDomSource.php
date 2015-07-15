@@ -4,12 +4,7 @@ App::import('Vendor','simple_html_dom',array('file'=>'sunra/php-simple-html-dom-
 /**
  * Html Dom Datasource
  *
- * Datasource for html Dom based models
- * 
- *  @copyright     copyright 2015, Cholthi Tiopic
- *  @author        cholthi
- *  @license        MIT
- *  @package        Model.Datasource
+ * Datasource for array based models
  */
 class HtmlDomSource extends DataSource {
 /**
@@ -88,13 +83,8 @@ private function loadDom($model) {
  * @return mixed
  */
 	public function read(Model $model, $queryData = array(), $recursive = null) {
-<<<<<<< HEAD
 		$this->Dom = $this->loadDom($model);
         $data = array();
-=======
-		$this->Dom = $this->loadDom;
-                $data = array();
->>>>>>> 84a40261d7c77e2384f96573807a7d72c4abae75
 		$fields = $queryData['fields'];
 		unset($queryData['fields']);
 
@@ -113,7 +103,7 @@ private function loadDom($model) {
 */
  public function extractData($model, $fields = array() , $conditions) {
 
- 	           $result = array();
+ 	              $result = array();
                   foreach ($fields as  $field) {
 
                   	$_selector = $conditions[$field] ;
@@ -157,15 +147,6 @@ private function loadDom($model) {
                         }
                   }
                   }
-<<<<<<< HEAD
-                  $this->dom = '';
+                  $this->dom = null;
                   return $result;
 }
-=======
-                  $this->Dom = '';
-                  return $result
-
-
-
-}
->>>>>>> 84a40261d7c77e2384f96573807a7d72c4abae75
