@@ -114,7 +114,7 @@ private function loadDom($model) {
 
                   		if(ctype_digit(trim($index)) {
 
-                        $selector = unset($selector[count($selector)-1]);
+                        unset($selector[count($selector)-1]);
                         $elem = $this->Dom->find(implode(' ',$selector), (int)$index);
                         $result[$model->alias][$field] = $elem->innertext;
                   	   }
