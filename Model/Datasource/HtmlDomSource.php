@@ -150,3 +150,4 @@ private function loadDom($model) {
                   $this->dom = null;
                   return $result;
 }
+}

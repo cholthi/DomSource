@@ -67,7 +67,7 @@
 	*/
 
 	public  function testFind() {
-         $result = $this->Model->find('all',array('conditions'=>array('title'=>'h2.story span a 0','body'=> 'div.body div i 0'),'fields'=> array('body','title')));
+         $result = $this->Model->find('all',array('conditions'=>array('title'=>'h2.story span a 0','body'=> 'div.body div i 2'),'fields'=> array('body','title')));
         $this->assertNotEmpty($result);
 	}	
  }
